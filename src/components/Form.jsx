@@ -1,6 +1,8 @@
 import React from 'react'
 
 export default function Form({value, handleChange, onSubmitForm}) {
+    console.log('Form')
+
     return (
         <form className='flex pt-2' onSubmit={e => onSubmitForm(e)}>
             <input className='w-full px-3 py-2 mr-4 text-gray-500 border rounded shadow' type="text" name="value" placeholder='할 일을 입력하세요.' value={value} onChange={e => handleChange(e)} />

@@ -1,6 +1,14 @@
+import React from 'react'
 
+/**
+ * React.memo
+ * -> 렌더링 결과를 memory에 저장해 놓음
+ * -> props가 같으면 새로 렌더링하지 않고 저장된 렌더링 결과를 반환함
+ * -> 즉, 리렌더링을 할 때, porps의 결과가 자주 같은 것으로 예상되면 React.memo()를 사용하면 됨
+ */
+const List = React.memo(({todo, todoData, provided, snapshot, setTodoData}) => {
+    console.log('List')
 
-export default function List({todo, todoData, provided, snapshot, setTodoData}) {
     const handleClick = (id) => {
         setTodoData(todoData.filter(v => v.id !== id))
     }
@@ -31,4 +39,6 @@ export default function List({todo, todoData, provided, snapshot, setTodoData}) 
             </div>
         </div>
     )
-}
+})
+
+export default List
