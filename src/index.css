@@ -1,21 +1,3 @@
-body {
-  background-color: aliceblue;
-}
-
-.container {
-  margin: auto;
-  max-width: 600px;
-}
-
-.todoBlock {
-  padding: 30px;
-  margin-top: 50px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: -9px 17px 13px rgb(0 0 0 / 16%);
-}
-.todoBlock span.done { text-decoration: line-through; }
-
-form { display: flex }
-form input[type=text] { flex: 10; padding: 5px; }
-form input[type=submit] { flex: 1 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
