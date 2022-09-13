@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 
 /**
  * React.memo
@@ -9,9 +9,15 @@ import React from 'react'
 const List = React.memo(({todo, todoData, provided, snapshot, setTodoData}) => {
     console.log('List')
 
-    const handleClick = (id) => {
+    /**
+     * useCallback(..., [something])
+     * -> something에 선언된 값이 변하지 않는 이상 함수를 재선언 하지 않는다
+     * -> 빈 배열일 경우에는 최초에 컴포넌트가 생성될 때만 1회 선언된 후 다시 선언되지 않는다
+     * -> 즉, 특정 값의 변동에만 함수를 다시 생성하고 싶을 때, useCallback()을 사용한다
+     */
+    const handleClick = useCallback((id) => {
         setTodoData(todoData.filter(v => v.id !== id))
-    }
+    }, [todoData])
 
     const handleCheck = (e, id) => {
         const newTodoData = todoData.map(v => {
