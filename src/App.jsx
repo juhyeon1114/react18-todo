@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Lists from './components/Lists';
 import Form from './components/Form';
 
@@ -25,15 +25,21 @@ export default function App() {
       setValue('')
   }
 
-  return (
-    <div className='flex items-center justify-center w-screen h-screen bg-blue-100'>
-      <div className='w-full p-6 m-4 bg-white rounded shadow lg:w-3/4 lg:max-w-lg'>
-        <div className='flex justify-between mb-3'>
-          <h1>할 일 목록</h1>
-        </div>
-        <Lists todoData={todoData} setTodoData={setTodoData}></Lists>
-        <Form onSubmitForm={onSubmitForm} handleChange={handleChange} value={value}></Form>
+  /**
+   * useMemo()
+   * -> 2번째 인자인 배열 안에 있는 값이 변할 때, 첫번째 인자의 값을 다시 계산한다. 
+   *    그 외에는 기존에 계산된(메모리에 저장된) 값을 return한다
+   * -> Vue의 computed와 비슷한 역할
+   */
+  const count = useMemo(() => todoData.length, [todoData])
+
+  return <div className='flex items-center justify-center w-screen h-screen bg-blue-100'>
+    <div className='w-full p-6 m-4 bg-white rounded shadow lg:w-3/4 lg:max-w-lg'>
+      <div className='flex justify-between mb-3'>
+        <h1>할 일 목록 {count}</h1>
       </div>
+      <Lists todoData={todoData} setTodoData={setTodoData}></Lists>
+      <Form onSubmitForm={onSubmitForm} handleChange={handleChange} value={value}></Form>
     </div>
-  )
+  </div>
 }
