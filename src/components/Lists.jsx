@@ -2,7 +2,7 @@ import { memo, useMemo } from 'react'
 import { Draggable, Droppable, DragDropContext } from "react-beautiful-dnd"
 import List from "./List"
 
-const Lists = memo(({todoData, setTodoData}) => {
+const Lists = memo(({todoData, saveData}) => {
     console.log('Lists')
 
     const handleEnd = (e) => {
@@ -10,7 +10,7 @@ const Lists = memo(({todoData, setTodoData}) => {
         const newTodoData = todoData
         const [picked] = newTodoData.splice(e.source.index, 1)
         newTodoData.splice(e.destination.index, 0, picked)
-        setTodoData(newTodoData)
+        saveData(newTodoData)
     }
 
     return <div>
@@ -31,7 +31,7 @@ const Lists = memo(({todoData, setTodoData}) => {
                                         todoData={todoData}
                                         provided={provided}
                                         snapshot={snapshot}
-                                        setTodoData={setTodoData}
+                                        saveData={saveData}
                                     />
                                 )}
                             </Draggable>

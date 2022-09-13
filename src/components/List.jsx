@@ -6,7 +6,7 @@ import {useCallback, memo} from 'react'
  * -> props가 같으면 새로 렌더링하지 않고 저장된 렌더링 결과를 반환함
  * -> 즉, 리렌더링을 할 때, porps의 결과가 자주 같은 것으로 예상되면 React.memo()를 사용하면 됨
  */
-const List = memo(({todo, todoData, provided, snapshot, setTodoData}) => {
+const List = memo(({todo, todoData, provided, snapshot, saveData}) => {
     console.log('List')
 
     /**
@@ -16,7 +16,7 @@ const List = memo(({todo, todoData, provided, snapshot, setTodoData}) => {
      * -> 즉, 특정 값의 변동에만 함수를 다시 생성하고 싶을 때, useCallback()을 사용한다
      */
     const handleClick = useCallback((id) => {
-        setTodoData(todoData.filter(v => v.id !== id))
+        saveData(todoData.filter(v => v.id !== id))
     }, [todoData])
 
     const handleCheck = (e, id) => {
@@ -26,7 +26,7 @@ const List = memo(({todo, todoData, provided, snapshot, setTodoData}) => {
             }
             return v;
         })
-        setTodoData(newTodoData)
+        saveData(newTodoData)
     }
 
     return <div
