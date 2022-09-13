@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "open": "npm i -g localtunnel && lt --port 3000 --subdomain todo"
   },
   "dependencies": {
     "react": "^18.2.0",
